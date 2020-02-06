@@ -30,7 +30,7 @@ class _UserPageState extends State<UserPage> {
                         context, '/user');
                   },
                   child: Text(
-                    'Пользователиии',
+                    'Пользователи',
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   )),
               SizedBox(width: 50),
@@ -41,7 +41,7 @@ class _UserPageState extends State<UserPage> {
                         context, '/event');
                   },
                   child: Text(
-                    'Мероприятияяя',
+                    'Мероприятия',
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   )),
               SizedBox(width: 50),
@@ -49,7 +49,7 @@ class _UserPageState extends State<UserPage> {
                   color: Color(0x00000000),
                   onPressed: () {},
                   child: Text(
-                    'Администрированиееее',
+                    'Администрирование',
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   )),
             ],
@@ -71,7 +71,7 @@ class _UserPageState extends State<UserPage> {
                   color: Color(0x00000000),
                   onPressed: () {},
                   child: Text(
-                    'Подтвержденныееее',
+                    'Подтвержденные',
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   )),
               SizedBox(width: 100),
@@ -79,7 +79,7 @@ class _UserPageState extends State<UserPage> {
                   color: Color(0x00000000),
                   onPressed: () {},
                   child: Text(
-                    'Ожидающиеее',
+                    'Ожидающие',
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   )),
             ],
@@ -142,7 +142,7 @@ class _UserPageState extends State<UserPage> {
                   color: Color(0x00000000),
                   onPressed: () {},
                   child: Text(
-                    'Send',
+                    'Отправить изменения',
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   )),
             ],

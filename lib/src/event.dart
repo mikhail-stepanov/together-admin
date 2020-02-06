@@ -30,7 +30,7 @@ class _EventPageState extends State<EventPage> {
                         context, '/user');
                   },
                   child: Text(
-                    'Пользователиии',
+                    'Пользователи',
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   )),
               SizedBox(width: 50),
@@ -41,7 +41,7 @@ class _EventPageState extends State<EventPage> {
                         context, '/event');
                   },
                   child: Text(
-                    'Мероприятияяя',
+                    'Мероприятия',
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   )),
               SizedBox(width: 50),
@@ -49,7 +49,7 @@ class _EventPageState extends State<EventPage> {
                   color: Color(0x00000000),
                   onPressed: () {},
                   child: Text(
-                    'Администрированиееее',
+                    'Администрирование',
                     style: TextStyle(fontSize: 30, color: Colors.white),
                   )),
             ],
@@ -119,7 +119,7 @@ class _EventPageState extends State<EventPage> {
                   color: Color(0x00000000),
                   onPressed: () {},
                   child: Text(
-                    'Send',
+                    'Отправить изменения',
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   )),
             ],
