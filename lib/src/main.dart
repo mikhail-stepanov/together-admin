@@ -1,6 +1,7 @@
 import 'package:flutter_web/material.dart';
-import 'package:together_admin/src/event.dart';
-import 'user.dart';
+import 'package:together_admin/src/pages/event.dart';
+import 'package:together_admin/src/pages/login.dart';
+import 'package:together_admin/src/pages/user.dart';
 
 class AdminPanel extends StatelessWidget {
   @override
@@ -10,8 +11,9 @@ class AdminPanel extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(primarySwatch: Colors.deepPurple),
         home: UserPage(title: 'Together Admin Panel'),
-        initialRoute: '/user',
+        initialRoute: '/login',
         routes: {
+          '/login': (BuildContext context) => LoginPage(),
           '/user': (BuildContext context) => UserPage(),
           '/event': (BuildContext context) => EventPage()
         });
