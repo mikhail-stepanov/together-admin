@@ -3,9 +3,9 @@
 /// name : "Inozemtsev max"
 /// email : "danser554@gmail.com"
 /// phone : "+79163764455"
-/// facebook : ""
-/// instagram : ""
-/// picUrl : null
+/// facebook : "-"
+/// instagram : "-"
+/// picId : 0
 /// verified : true
 
 class User {
@@ -16,7 +16,7 @@ class User {
   String _phone;
   String _facebook;
   String _instagram;
-  String _picUrl;
+  int _picId;
   bool _verified;
 
   int get id => _id;
@@ -26,10 +26,10 @@ class User {
   String get phone => _phone;
   String get facebook => _facebook;
   String get instagram => _instagram;
-  String get picUrl => _picUrl;
+  int get picId => _picId;
   bool get verified => _verified;
 
-  User(this._id, this._userId, this._name, this._email, this._phone, this._facebook, this._instagram, this._picUrl, this._verified);
+  User(this._id, this._userId, this._name, this._email, this._phone, this._facebook, this._instagram, this._picId, this._verified);
 
   User.map(dynamic obj) {
     this._id = obj["id"];
@@ -39,7 +39,7 @@ class User {
     this._phone = obj["phone"];
     this._facebook = obj["facebook"];
     this._instagram = obj["instagram"];
-    this._picUrl = obj["picUrl"];
+    this._picId = obj["picId"];
     this._verified = obj["verified"];
   }
 
@@ -52,7 +52,7 @@ class User {
     map["phone"] = _phone;
     map["facebook"] = _facebook;
     map["instagram"] = _instagram;
-    map["picUrl"] = _picUrl;
+    map["picId"] = _picId;
     map["verified"] = _verified;
     return map;
   }

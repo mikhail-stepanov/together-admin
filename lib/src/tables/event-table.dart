@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_web/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:together_admin/src/models/user-model.dart';
+import 'package:together_admin/src/models/event-model.dart';
 
 class EventTable extends StatefulWidget {
   EventTable() : super();
@@ -12,107 +12,107 @@ class EventTable extends StatefulWidget {
 }
 
 class EventTableState extends State<EventTable> {
-  List<User> users;
-  List<User> selectedUsers;
+  List<Event> events;
+  List<Event> selectedEvents;
   bool sort;
 
   @override
   void initState() {
     super.initState();
     sort = false;
-    selectedUsers = [];
-    users = [];
+    selectedEvents = [];
+    events = [];
   }
 
   onSort(int columnIndex, bool ascending) {
     if (columnIndex == 0) {
       if (ascending) {
-        users.sort((a, b) => a.name.compareTo(b.name));
+        events.sort((a, b) => a.title.compareTo(b.title));
       } else {
-        users.sort((a, b) => b.name.compareTo(a.name));
+        events.sort((a, b) => b.title.compareTo(a.title));
       }
     }
   }
 
-  onSelectedRow(bool selected, User user) async {
+  onSelectedRow(bool selected, Event user) async {
     setState(() {
       if (selected) {
-        selectedUsers.add(user);
+        selectedEvents.add(user);
       } else {
-        selectedUsers.remove(user);
+        selectedEvents.remove(user);
       }
     });
   }
 
   deleteSelected() async {
-    if (selectedUsers.isNotEmpty) {
-      List<User> temp = [];
-      temp.addAll(selectedUsers);
-      for (User user in temp) {
-        var url = 'http://84.201.185.226:8080/v1/user/remove';
-        var response = await http.post(url,
-            headers: {
-              'Content-Type': 'application/json; charset=utf-8',
-              'Accept': 'application/json; charset=utf-8'
-            },
-            body: jsonEncode({
-              'userId': user.userId,
-            }));
-      }
-    }
-    var url = 'http://84.201.185.226:8080/v1/user/list';
-    var response = await http.get(url, headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Accept': 'application/json; charset=utf-8'
-    });
-
-    var users = List<User>();
-
-    if (response.statusCode == 200) {
-      var notesJson = json.decode(response.body);
-      for (var noteJson in notesJson) {
-        users.add(User.map(noteJson));
-      }
-    }
-    setState(() {
-      this.users = users;
-    });
+//    if (selectedEvents.isNotEmpty) {
+//      List<Event> temp = [];
+//      temp.addAll(selectedEvents);
+//      for (Event user in temp) {
+//        var url = 'http://84.201.185.226:8080/v1/user/remove';
+//        var response = await http.post(url,
+//            headers: {
+//              'Content-Type': 'application/json; charset=utf-8',
+//              'Accept': 'application/json; charset=utf-8'
+//            },
+//            body: jsonEncode({
+//              'userId': user.userId,
+//            }));
+//      }
+//    }
+//    var url = 'http://84.201.185.226:8080/v1/user/list';
+//    var response = await http.get(url, headers: {
+//      'Content-Type': 'application/json; charset=utf-8',
+//      'Accept': 'application/json; charset=utf-8'
+//    });
+//
+//    var events = List<Event>();
+//
+//    if (response.statusCode == 200) {
+//      var notesJson = json.decode(response.body);
+//      for (var noteJson in notesJson) {
+//        events.add(Event.map(noteJson));
+//      }
+//    }
+//    setState(() {
+//      this.events = events;
+//    });
   }
 
   verifySelected() async {
-    if (selectedUsers.isNotEmpty) {
-      List<User> temp = [];
-      temp.addAll(selectedUsers);
-      for (User user in temp) {
-        var url = 'http://84.201.185.226:8080/v1/user/verify';
-        var response = await http.post(url,
-            headers: {
-              'Content-Type': 'application/json; charset=utf-8',
-              'Accept': 'application/json; charset=utf-8'
-            },
-            body: jsonEncode({
-              'userId': user.userId,
-            }));
-      }
-    }
-    var url = 'http://84.201.185.226:8080/v1/user/list';
-    var response = await http.get(url, headers: {
-      'Content-Type': 'application/json; charset=utf-8',
-      'Accept': 'application/json; charset=utf-8'
-    });
-
-    var users = List<User>();
-
-    if (response.statusCode == 200) {
-      var notesJson = json.decode(response.body);
-      for (var noteJson in notesJson) {
-        users.add(User.map(noteJson));
-      }
-    }
-    setState(() {
-      this.users = users;
-      this.selectedUsers = [];
-    });
+//    if (selectedEvents.isNotEmpty) {
+//      List<Event> temp = [];
+//      temp.addAll(selectedEvents);
+//      for (Event event in temp) {
+//        var url = 'http://84.201.185.226:8080/v1/user/verify';
+//        var response = await http.post(url,
+//            headers: {
+//              'Content-Type': 'application/json; charset=utf-8',
+//              'Accept': 'application/json; charset=utf-8'
+//            },
+//            body: jsonEncode({
+//              'userId': event.userId,
+//            }));
+//      }
+//    }
+//    var url = 'http://84.201.185.226:8080/v1/user/list';
+//    var response = await http.get(url, headers: {
+//      'Content-Type': 'application/json; charset=utf-8',
+//      'Accept': 'application/json; charset=utf-8'
+//    });
+//
+//    var events = List<Event>();
+//
+//    if (response.statusCode == 200) {
+//      var notesJson = json.decode(response.body);
+//      for (var noteJson in notesJson) {
+//        events.add(Event.map(noteJson));
+//      }
+//    }
+//    setState(() {
+//      this.events = events;
+//      this.selectedEvents = [];
+//    });
   }
 
   SingleChildScrollView dataBody() {
@@ -163,37 +163,37 @@ class EventTableState extends State<EventTable> {
             tooltip: "Видео",
           ),
         ],
-        rows: users
-            .map((user) => DataRow(
-                    selected: selectedUsers.contains(user),
+        rows: events
+            .map((event) => DataRow(
+                    selected: selectedEvents.contains(event),
                     onSelectChanged: (b) {
                       print("Onselect");
-                      onSelectedRow(b, user);
+                      onSelectedRow(b, event);
                     },
                     cells: [
                       DataCell(
-                        Text(user.name),
+                        Text(event.title),
                         onTap: () {
-                          print('Selected ${user.name}');
+                          print('Selected ${event.title}');
                         },
                       ),
                       DataCell(
-                        Text(user.userId.toString()),
+                        Text(event.place),
                       ),
                       DataCell(
-                        Text(user.email),
+                        Text(event.date),
                       ),
                       DataCell(
-                        Text(user.phone),
+                        Text(event.description),
                       ),
                       DataCell(
-                        Text(user.facebook),
+                        Text(event.ticketcloud),
                       ),
                       DataCell(
-                        Text(user.instagram),
+                        Text("-"),
                       ),
                       DataCell(
-                        Text(user.verified.toString()),
+                        Text("-"),
                       ),
                     ]))
             .toList(),
@@ -221,23 +221,23 @@ class EventTableState extends State<EventTable> {
                 child: OutlineButton(
                   child: Text('Все мероприятия'),
                   onPressed: () async {
-//                    var url = 'http://84.201.185.226:8080/v1/user/list';
-//                    var response = await http.get(url, headers: {
-//                      'Content-Type': 'application/json; charset=utf-8',
-//                      'Accept': 'application/json; charset=utf-8'
-//                    });
-//
-//                    var users = List<User>();
-//
-//                    if (response.statusCode == 200) {
-//                      var notesJson = json.decode(response.body);
-//                      for (var noteJson in notesJson) {
-//                        users.add(User.map(noteJson));
-//                      }
-//                    }
-//                    setState(() {
-//                      this.users = users;
-//                    });
+                    var url = 'http://84.201.185.226:8080/v1/event/list/all';
+                    var response = await http.get(url, headers: {
+                      'Content-Type': 'application/json; charset=utf-8',
+                      'Accept': 'application/json; charset=utf-8'
+                    });
+
+                    var events = List<Event>();
+
+                    if (response.statusCode == 200) {
+                      var notesJson = json.decode(response.body);
+                      for (var noteJson in notesJson) {
+                        events.add(Event.map(noteJson));
+                      }
+                    }
+                    setState(() {
+                      this.events = events;
+                    });
                   },
                 ),
               ),
@@ -246,25 +246,25 @@ class EventTableState extends State<EventTable> {
                 child: OutlineButton(
                   child: Text('Будущие'),
                   onPressed: () async {
-//                    var url =
-//                        'http://84.201.185.226:8080/v1/user/list/verified';
-//                    var response = await http.get(url, headers: {
-//                      'Content-Type': 'application/json; charset=utf-8',
-//                      'Accept': 'application/json; charset=utf-8'
-//                    });
-//
-//                    var users = List<User>();
-//
-//                    if (response.statusCode == 200) {
-//                      var notesJson = json.decode(response.body);
-//                      for (var noteJson in notesJson) {
-//                        users.add(User.map(noteJson));
-//                      }
-//                    }
-//                    this.users = users;
-//                    setState(() {
-//                      this.users = users;
-//                    });
+                    var url =
+                        'http://84.201.185.226:8080/v1/event/list/future';
+                    var response = await http.get(url, headers: {
+                      'Content-Type': 'application/json; charset=utf-8',
+                      'Accept': 'application/json; charset=utf-8'
+                    });
+
+                    var events = List<Event>();
+
+                    if (response.statusCode == 200) {
+                      var notesJson = json.decode(response.body);
+                      for (var noteJson in notesJson) {
+                        events.add(Event.map(noteJson));
+                      }
+                    }
+                    this.events = events;
+                    setState(() {
+                      this.events = events;
+                    });
                   },
                 ),
               ),
@@ -273,25 +273,25 @@ class EventTableState extends State<EventTable> {
                 child: OutlineButton(
                   child: Text('Прошедшие'),
                   onPressed: () async {
-//                    var url =
-//                        'http://84.201.185.226:8080/v1/user/list/unverified';
-//                    var response = await http.get(url, headers: {
-//                      'Content-Type': 'application/json; charset=utf-8',
-//                      'Accept': 'application/json; charset=utf-8'
-//                    });
-//
-//                    var users = List<User>();
-//
-//                    if (response.statusCode == 200) {
-//                      var notesJson = json.decode(response.body);
-//                      for (var noteJson in notesJson) {
-//                        users.add(User.map(noteJson));
-//                      }
-//                    }
-//                    this.users = users;
-//                    setState(() {
-//                      this.users = users;
-//                    });
+                    var url =
+                        'http://84.201.185.226:8080/v1/event/list/past';
+                    var response = await http.get(url, headers: {
+                      'Content-Type': 'application/json; charset=utf-8',
+                      'Accept': 'application/json; charset=utf-8'
+                    });
+
+                    var events = List<Event>();
+
+                    if (response.statusCode == 200) {
+                      var notesJson = json.decode(response.body);
+                      for (var noteJson in notesJson) {
+                        events.add(Event.map(noteJson));
+                      }
+                    }
+                    this.events = events;
+                    setState(() {
+                      this.events = events;
+                    });
                   },
                 ),
               ),

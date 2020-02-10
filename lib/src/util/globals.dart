@@ -1,3 +1,4 @@
+import 'package:together_admin/src/models/event-model.dart';
 import 'package:together_admin/src/models/user-model.dart';
 
 class Globals {
@@ -5,4 +6,5 @@ class Globals {
 
   static List<User> users;
 
+  static List<Event> events;
 }
