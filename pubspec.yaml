@@ -25,6 +25,7 @@ dev_dependencies:
 dependency_overrides:
   flutter_web:
     git:
+      ref: cc38319
       url: https://github.com/flutter/flutter_web
       path: packages/flutter_web
   flutter_web_ui:

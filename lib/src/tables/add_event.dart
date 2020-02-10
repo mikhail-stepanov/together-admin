@@ -29,7 +29,7 @@ class AddEvent extends StatelessWidget {
               'Название:',
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
-            TextFormField(
+            TextField(
                 controller: _titleController,
                 decoration: InputDecoration(
                     focusedBorder: UnderlineInputBorder(
@@ -42,15 +42,13 @@ class AddEvent extends StatelessWidget {
                     ))),
                 cursorColor: color_text,
                 style: TextStyle(fontSize: 20, color: color_text),
-                validator: (value) {
-                  if (value.isEmpty) return 'Пожалуйста введите название';
-                }),
+                ),
             SizedBox(height: 20),
             Text(
               'Описание:',
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
-            TextFormField(
+            TextField(
                 controller: _descriptionController,
                 decoration: InputDecoration(
                     focusedBorder: UnderlineInputBorder(
@@ -63,15 +61,13 @@ class AddEvent extends StatelessWidget {
                     ))),
                 cursorColor: color_text,
                 style: TextStyle(fontSize: 20, color: color_text),
-                validator: (value) {
-                  if (value.isEmpty) return 'Пожалуйста введите описание';
-                }),
+                ),
             SizedBox(height: 20),
             Text(
               'Место:',
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
-            TextFormField(
+            TextField(
                 controller: _placeController,
                 decoration: InputDecoration(
                     focusedBorder: UnderlineInputBorder(
@@ -84,15 +80,13 @@ class AddEvent extends StatelessWidget {
                     ))),
                 cursorColor: color_text,
                 style: TextStyle(fontSize: 20, color: color_text),
-                validator: (value) {
-                  if (value.isEmpty) return 'Пожалуйста введите место';
-                }),
+                ),
             SizedBox(height: 20),
             Text(
               'Время и дата:',
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
-            TextFormField(
+            TextField(
                 controller: _dateController,
                 decoration: InputDecoration(
                     focusedBorder: UnderlineInputBorder(
@@ -105,15 +99,13 @@ class AddEvent extends StatelessWidget {
                     ))),
                 cursorColor: color_text,
                 style: TextStyle(fontSize: 20, color: color_text),
-                validator: (value) {
-                  if (value.isEmpty) return 'Пожалуйста введите дату';
-                }),
+                ),
             SizedBox(height: 20),
             Text(
               'Ссылка на TicketCloud:',
               style: TextStyle(fontSize: 20, color: Colors.white),
             ),
-            TextFormField(
+            TextField(
                 controller: _ticketcloudController,
                 decoration: InputDecoration(
                     focusedBorder: UnderlineInputBorder(
@@ -126,10 +118,7 @@ class AddEvent extends StatelessWidget {
                     ))),
                 cursorColor: color_text,
                 style: TextStyle(fontSize: 20, color: color_text),
-                validator: (value) {
-                  if (value.isEmpty)
-                    return 'Пожалуйста введите ссылку на ticketcloud';
-                }),
+                ),
             SizedBox(height: 20),
             SizedBox(height: 20),
             ButtonTheme(

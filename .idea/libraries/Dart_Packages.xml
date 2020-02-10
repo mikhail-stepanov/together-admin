@@ -243,7 +243,7 @@
         <entry key="flutter_web">
           <value>
             <list>
-              <option value="$USER_HOME$/AppData/Roaming/Pub/Cache/git/flutter_web-c04fb502b842859de07e36954a9390465a5426c0/packages/flutter_web/lib" />
+              <option value="$USER_HOME$/AppData/Roaming/Pub/Cache/git/flutter_web-cc38319841009fcbdf632d9b03aab18d28939438/packages/flutter_web/lib" />
             </list>
           </value>
         </entry>
@@ -663,8 +663,8 @@
       </option>
     </properties>
     <CLASSES>
-      <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/git/flutter_web-c04fb502b842859de07e36954a9390465a5426c0/packages/flutter_web/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/git/flutter_web-c04fb502b842859de07e36954a9390465a5426c0/packages/flutter_web_ui/lib" />
+      <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/git/flutter_web-cc38319841009fcbdf632d9b03aab18d28939438/packages/flutter_web/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/analyzer-0.35.4/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/angular-5.3.1/lib" />
       <root url="file://$USER_HOME$/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/angular_ast-0.5.9/lib" />
