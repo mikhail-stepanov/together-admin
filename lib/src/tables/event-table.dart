@@ -4,6 +4,8 @@ import 'package:flutter_web/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:together_admin/src/models/event-model.dart';
 import 'package:together_admin/src/tables/add_event.dart';
+import 'package:together_admin/src/tables/update_event.dart';
+import 'package:together_admin/src/util/globals.dart';
 
 class EventTable extends StatefulWidget {
   EventTable() : super();
@@ -22,7 +24,7 @@ class EventTableState extends State<EventTable> {
     super.initState();
     sort = false;
     selectedEvents = [];
-    events = [];
+    events = Globals.events;
   }
 
   onSort(int columnIndex, bool ascending) {
@@ -272,7 +274,15 @@ class EventTableState extends State<EventTable> {
                 padding: EdgeInsets.all(20.0),
                 child: OutlineButton(
                   child: Text('Редактировать'),
-                  onPressed: () {},
+                  onPressed: () {
+                    Globals.selectedEvent = selectedEvents.first;
+                    Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            opaque: false,
+                            pageBuilder: (BuildContext context, _, __) =>
+                                UpdateEvent()));
+                  },
                 ),
               ),
               Padding(

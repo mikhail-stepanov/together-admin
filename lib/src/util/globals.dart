@@ -7,4 +7,5 @@ class Globals {
   static List<User> users;
 
   static List<Event> events;
+  static Event selectedEvent;
 }

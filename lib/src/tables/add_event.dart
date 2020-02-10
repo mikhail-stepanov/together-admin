@@ -163,6 +163,24 @@ class AddEvent extends StatelessWidget {
                 textColor: Colors.white,
               ),
             ),
+            SizedBox(height: 50),
+            ButtonTheme(
+              minWidth: 60,
+              height: 30,
+              child: RaisedButton(
+                onPressed: () async {
+                  Navigator.of(context).pop();
+                },
+                child: Text(
+                  'Отмена',
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                color: Color(0xFF707070),
+                textColor: Colors.white,
+              ),
+            ),
           ],
         ));
   }
