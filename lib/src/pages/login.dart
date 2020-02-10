@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_web/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:together_admin/src/models/event-model.dart';
 import 'package:together_admin/src/models/user-model.dart';
 import 'package:together_admin/src/util/globals.dart';
 
@@ -49,6 +50,22 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   }
                   Globals.users = users;
+
+                  var urlEvent = 'http://84.201.185.226:8080/v1/event/list/all';
+                  var responseEvent = await http.get(urlEvent, headers: {
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Accept': 'application/json; charset=utf-8'
+                  });
+
+                  var events = List<Event>();
+
+                  if (responseEvent.statusCode == 200) {
+                    var notesJson = json.decode(responseEvent.body);
+                    for (var noteJson in notesJson) {
+                      events.add(Event.map(noteJson));
+                    }
+                  }
+                  Globals.events = events;
                   Navigator.pushReplacementNamed(context, '/user');
                 },
                 child: Text(
