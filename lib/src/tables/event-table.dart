@@ -275,7 +275,6 @@ class EventTableState extends State<EventTable> {
                 child: OutlineButton(
                   child: Text('Редактировать'),
                   onPressed: () {
-                    Globals.selectedEvent = selectedEvents.first;
                     Navigator.push(
                         context,
                         PageRouteBuilder(

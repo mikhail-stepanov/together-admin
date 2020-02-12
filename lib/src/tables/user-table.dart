@@ -116,6 +116,78 @@ class UserTableState extends State<UserTable> {
     });
   }
 
+  blockSelected() async {
+    if (selectedUsers.isNotEmpty) {
+      List<User> temp = [];
+      temp.addAll(selectedUsers);
+      for (User user in temp) {
+        var url = 'http://84.201.185.226:8080/v1/user/block';
+        var response = await http.post(url,
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8',
+              'Accept': 'application/json; charset=utf-8'
+            },
+            body: jsonEncode({
+              'userId': user.userId,
+            }));
+      }
+    }
+    var url = 'http://84.201.185.226:8080/v1/user/list';
+    var response = await http.get(url, headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept': 'application/json; charset=utf-8'
+    });
+
+    var users = List<User>();
+
+    if (response.statusCode == 200) {
+      var notesJson = json.decode(response.body);
+      for (var noteJson in notesJson) {
+        users.add(User.map(noteJson));
+      }
+    }
+    setState(() {
+      this.users = users;
+      this.selectedUsers = [];
+    });
+  }
+
+  unblockSelected() async {
+    if (selectedUsers.isNotEmpty) {
+      List<User> temp = [];
+      temp.addAll(selectedUsers);
+      for (User user in temp) {
+        var url = 'http://84.201.185.226:8080/v1/user/unblock';
+        var response = await http.post(url,
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8',
+              'Accept': 'application/json; charset=utf-8'
+            },
+            body: jsonEncode({
+              'userId': user.userId,
+            }));
+      }
+    }
+    var url = 'http://84.201.185.226:8080/v1/user/list';
+    var response = await http.get(url, headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      'Accept': 'application/json; charset=utf-8'
+    });
+
+    var users = List<User>();
+
+    if (response.statusCode == 200) {
+      var notesJson = json.decode(response.body);
+      for (var noteJson in notesJson) {
+        users.add(User.map(noteJson));
+      }
+    }
+    setState(() {
+      this.users = users;
+      this.selectedUsers = [];
+    });
+  }
+
   SingleChildScrollView dataBody() {
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
@@ -218,7 +290,7 @@ class UserTableState extends State<UserTable> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(15.0),
                 child: OutlineButton(
                   child: Text('Все пользователи'),
                   onPressed: () async {
@@ -243,7 +315,7 @@ class UserTableState extends State<UserTable> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(15.0),
                 child: OutlineButton(
                   child: Text('Подтвержденные'),
                   onPressed: () async {
@@ -270,7 +342,7 @@ class UserTableState extends State<UserTable> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(15.0),
                 child: OutlineButton(
                   child: Text('Неподтвержденные'),
                   onPressed: () async {
@@ -296,9 +368,57 @@ class UserTableState extends State<UserTable> {
                   },
                 ),
               ),
-              SizedBox(width: 300),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: OutlineButton(
+                  child: Text('Черный список'),
+                  onPressed: () async {
+                    var url =
+                        'http://84.201.185.226:8080/v1/user/list/blocked';
+                    var response = await http.get(url, headers: {
+                      'Content-Type': 'application/json; charset=utf-8',
+                      'Accept': 'application/json; charset=utf-8'
+                    });
+
+                    var users = List<User>();
+
+                    if (response.statusCode == 200) {
+                      var notesJson = json.decode(response.body);
+                      for (var noteJson in notesJson) {
+                        users.add(User.map(noteJson));
+                      }
+                    }
+                    this.users = users;
+                    setState(() {
+                      this.users = users;
+                    });
+                  },
+                ),
+              ),
               Padding(
                 padding: EdgeInsets.all(20.0),
+                child: OutlineButton(
+                  child: Text('Добавить в ЧС ${selectedUsers.length}'),
+                  onPressed: selectedUsers.isEmpty
+                      ? null
+                      : () {
+                    blockSelected();
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: OutlineButton(
+                  child: Text('Убрать из ЧС ${selectedUsers.length}'),
+                  onPressed: selectedUsers.isEmpty
+                      ? null
+                      : () {
+                    unblockSelected();
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(15.0),
                 child: OutlineButton(
                   child: Text('Удалить'),
                   onPressed: selectedUsers.isEmpty
@@ -309,7 +429,7 @@ class UserTableState extends State<UserTable> {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(20.0),
+                padding: EdgeInsets.all(15.0),
                 child: OutlineButton(
                   child: Text('Подтвердить ${selectedUsers.length}'),
                   onPressed: selectedUsers.isEmpty
