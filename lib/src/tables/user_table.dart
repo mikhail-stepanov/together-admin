@@ -2,7 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter_web/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:together_admin/src/models/user-model.dart';
+import 'package:together_admin/src/models/user_model.dart';
+import 'package:together_admin/src/tables/update_user.dart';
 import 'package:together_admin/src/util/globals.dart';
 
 class UserTable extends StatefulWidget {
@@ -235,6 +236,11 @@ class UserTableState extends State<UserTable> {
             numeric: false,
             tooltip: "Подтвержден",
           ),
+          DataColumn(
+            label: Text("Билеты"),
+            numeric: false,
+            tooltip: "Билеты",
+          ),
         ],
         rows: users
             .map((user) => DataRow(
@@ -268,11 +274,15 @@ class UserTableState extends State<UserTable> {
                       DataCell(
                         Text(user.verified.toString()),
                       ),
+                      DataCell(
+                        Text('-'),
+                      ),
                     ]))
             .toList(),
       ),
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -289,31 +299,6 @@ class UserTableState extends State<UserTable> {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.all(15.0),
-                child: OutlineButton(
-                  child: Text('Все пользователи'),
-                  onPressed: () async {
-                    var url = 'http://84.201.185.226:8080/v1/user/list';
-                    var response = await http.get(url, headers: {
-                      'Content-Type': 'application/json; charset=utf-8',
-                      'Accept': 'application/json; charset=utf-8'
-                    });
-
-                    var users = List<User>();
-
-                    if (response.statusCode == 200) {
-                      var notesJson = json.decode(response.body);
-                      for (var noteJson in notesJson) {
-                        users.add(User.map(noteJson));
-                      }
-                    }
-                    setState(() {
-                      this.users = users;
-                    });
-                  },
-                ),
-              ),
               Padding(
                 padding: EdgeInsets.all(15.0),
                 child: OutlineButton(
@@ -373,8 +358,7 @@ class UserTableState extends State<UserTable> {
                 child: OutlineButton(
                   child: Text('Черный список'),
                   onPressed: () async {
-                    var url =
-                        'http://84.201.185.226:8080/v1/user/list/blocked';
+                    var url = 'http://84.201.185.226:8080/v1/user/list/blocked';
                     var response = await http.get(url, headers: {
                       'Content-Type': 'application/json; charset=utf-8',
                       'Accept': 'application/json; charset=utf-8'
@@ -402,8 +386,8 @@ class UserTableState extends State<UserTable> {
                   onPressed: selectedUsers.isEmpty
                       ? null
                       : () {
-                    blockSelected();
-                  },
+                          blockSelected();
+                        },
                 ),
               ),
               Padding(
@@ -413,8 +397,8 @@ class UserTableState extends State<UserTable> {
                   onPressed: selectedUsers.isEmpty
                       ? null
                       : () {
-                    unblockSelected();
-                  },
+                          unblockSelected();
+                        },
                 ),
               ),
               Padding(
@@ -426,6 +410,20 @@ class UserTableState extends State<UserTable> {
                       : () {
                           deleteSelected();
                         },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(15.0),
+                child: OutlineButton(
+                  child: Text('Полная информация'),
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        PageRouteBuilder(
+                            opaque: false,
+                            pageBuilder: (BuildContext context, _, __) =>
+                                UpdateUser(selectedUsers[0])));
+                  },
                 ),
               ),
               Padding(

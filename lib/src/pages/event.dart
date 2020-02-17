@@ -1,6 +1,6 @@
 import 'package:flutter_web/material.dart';
 import 'package:together_admin/src/header/header.dart';
-import 'package:together_admin/src/tables/event-table.dart';
+import 'package:together_admin/src/tables/event_table.dart';
 
 class EventPage extends StatefulWidget {
   EventPage({Key key, this.title}) : super(key: key);

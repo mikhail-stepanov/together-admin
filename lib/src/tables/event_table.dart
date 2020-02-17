@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_web/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:together_admin/src/models/event-model.dart';
+import 'package:together_admin/src/models/event_model.dart';
 import 'package:together_admin/src/tables/add_event.dart';
 import 'package:together_admin/src/tables/update_event.dart';
 import 'package:together_admin/src/util/globals.dart';
@@ -59,7 +59,7 @@ class EventTableState extends State<EventTable> {
               'Accept': 'application/json; charset=utf-8'
             },
             body: jsonEncode({
-              'title': event.title,
+              'id': event.id,
             }));
       }
     }
@@ -157,10 +157,10 @@ class EventTableState extends State<EventTable> {
                         Text(event.ticketcloud),
                       ),
                       DataCell(
-                        Text("-"),
+                        Text(event.picBig),
                       ),
                       DataCell(
-                        Text("-"),
+                        Text(event.video),
                       ),
                     ]))
             .toList(),
@@ -281,7 +281,7 @@ class EventTableState extends State<EventTable> {
                         PageRouteBuilder(
                             opaque: false,
                             pageBuilder: (BuildContext context, _, __) =>
-                                UpdateEvent()));
+                                UpdateEvent(Globals.selectedEvent)));
                   },
                 ),
               ),

@@ -4,30 +4,33 @@ class Header extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: <Widget>[
-        SizedBox(width: 50),
         Image.asset(
           '/images/logo.png',
-          width: 400,
+          width: 200,
           height: 125,
         ),
-        SizedBox(width: 130),
+        SizedBox(width: 230),
         FlatButton(
+            highlightColor: Color(0x80707070),
+            focusColor: Color(0x80707070),
             color: Color(0x00000000),
             onPressed: () {
               Navigator.pushReplacementNamed(context, '/user');
             },
             child: Text(
-              'Пользователи',
+              'Пользователи    ',
               style: TextStyle(fontSize: 30, color: Colors.white),
             )),
         SizedBox(width: 50),
         FlatButton(
+            highlightColor: Color(0x80707070),
+            focusColor: Color(0xFF707070),
             color: Color(0x00000000),
             onPressed: () {
               Navigator.pushReplacementNamed(context, '/event');
             },
             child: Text(
-              'Мероприятия',
+              'Мероприятия    ',
               style: TextStyle(fontSize: 30, color: Colors.white),
             )),
         SizedBox(width: 50),
@@ -35,7 +38,7 @@ class Header extends StatelessWidget {
             color: Color(0x00000000),
             onPressed: () {},
             child: Text(
-              'Администрирование',
+              'Администрирование    ',
               style: TextStyle(fontSize: 30, color: Colors.grey),
             )),
       ],

@@ -18,9 +18,9 @@ class Event {
   String _place;
   String _date;
   String _ticketcloud;
-  int _picBigId;
-  int _picSmallId;
-  int _video;
+  String _picBig;
+  String _picSmall;
+  String _video;
   String _description;
   String _youtube;
   String _soundcloud;
@@ -32,16 +32,16 @@ class Event {
   String get place => _place;
   String get date => _date;
   String get ticketcloud => _ticketcloud;
-  int get picBigId => _picBigId;
-  int get picSmallId => _picSmallId;
-  int get video => _video;
+  String get picBig => _picBig;
+  String get picSmall => _picSmall;
+  String get video => _video;
   String get description => _description;
   String get youtube => _youtube;
   String get soundcloud => _soundcloud;
   String get cloud => _cloud;
   bool get future => _future;
 
-  Event(this._id, this._title, this._place, this._date, this._ticketcloud, this._picBigId, this._picSmallId, this._video, this._description, this._youtube, this._soundcloud, this._cloud, this._future);
+  Event(this._id, this._title, this._place, this._date, this._ticketcloud, this._picBig, this._picSmall, this._video, this._description, this._youtube, this._soundcloud, this._cloud, this._future);
 
   Event.map(dynamic obj) {
     this._id = obj["id"];
@@ -49,8 +49,8 @@ class Event {
     this._place = obj["place"];
     this._date = obj["date"];
     this._ticketcloud = obj["ticketcloud"];
-    this._picBigId = obj["picBigId"];
-    this._picSmallId = obj["picSmallId"];
+    this._picBig = obj["picBig"];
+    this._picSmall = obj["picSmall"];
     this._video = obj["video"];
     this._description = obj["description"];
     this._youtube = obj["youtube"];
@@ -66,8 +66,8 @@ class Event {
     map["place"] = _place;
     map["date"] = _date;
     map["ticketcloud"] = _ticketcloud;
-    map["picBigId"] = _picBigId;
-    map["picSmallId"] = _picSmallId;
+    map["picBig"] = _picBig;
+    map["picSmall"] = _picSmall;
     map["video"] = _video;
     map["description"] = _description;
     map["youtube"] = _youtube;

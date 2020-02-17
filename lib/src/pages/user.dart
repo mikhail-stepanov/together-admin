@@ -1,6 +1,6 @@
 import 'package:flutter_web/material.dart';
 import 'package:together_admin/src/header/header.dart';
-import 'package:together_admin/src/tables/user-table.dart';
+import 'package:together_admin/src/tables/user_table.dart';
 
 class UserPage extends StatefulWidget {
   UserPage({Key key, this.title}) : super(key: key);
