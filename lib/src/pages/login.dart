@@ -103,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                         String name = _nameController.text;
                         String password = _passwordController.text;
                         if (name == 'together' && password == 'T0gether2020') {
-                          var url = 'http://84.201.185.226:8080/v1/user/list';
+                          var url = 'http://' + Globals.host + ':8080/v1/user/list';
                           var response = await http.get(url, headers: {
                             'Content-Type': 'application/json; charset=utf-8',
                             'Accept': 'application/json; charset=utf-8'
@@ -120,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
                           Globals.users = users;
 
                           var urlEvent =
-                              'http://84.201.185.226:8080/v1/event/list/all';
+                              'http://' + Globals.host + ':8080/v1/event/list/all';
                           var responseEvent =
                               await http.get(urlEvent, headers: {
                             'Content-Type': 'application/json; charset=utf-8',

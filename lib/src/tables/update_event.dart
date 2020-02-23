@@ -176,11 +176,11 @@ class UpdateEvent extends StatelessWidget {
                         String place = _placeController.text;
                         String date = _dateController.text;
                         String ticketcloud = _ticketcloudController.text;
-                        String bigPic = _ticketcloudController.text;
-                        String smallPic = _ticketcloudController.text;
-                        String video = _ticketcloudController.text;
-                        String youtube = _ticketcloudController.text;
-                        String soundcloud = _ticketcloudController.text;
+                        String bigPic = _bigImageController.text;
+                        String smallPic = _smallImageController.text;
+                        String video = _videoController.text;
+                        String youtube = _youtubeController.text;
+                        String soundcloud = _soundcloudController.text;
 
                         var response = await http.post(
                             'http://' + Globals.host + ':8080/v1/event/update',

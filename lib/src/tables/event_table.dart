@@ -52,7 +52,7 @@ class EventTableState extends State<EventTable> {
       List<Event> temp = [];
       temp.addAll(selectedEvents);
       for (Event event in temp) {
-        var url = 'http://84.201.185.226:8080/v1/event/remove';
+        var url = 'http://' + Globals.host + ':8080/v1/event/remove';
         var response = await http.post(url,
             headers: {
               'Content-Type': 'application/json; charset=utf-8',
@@ -63,7 +63,7 @@ class EventTableState extends State<EventTable> {
             }));
       }
     }
-    var url = 'http://84.201.185.226:8080/v1/event/list';
+    var url = 'http://' + Globals.host + ':8080/v1/event/list';
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Accept': 'application/json; charset=utf-8'
@@ -188,7 +188,7 @@ class EventTableState extends State<EventTable> {
                 child: OutlineButton(
                   child: Text('Все мероприятия'),
                   onPressed: () async {
-                    var url = 'http://84.201.185.226:8080/v1/event/list/all';
+                    var url = 'http://' + Globals.host + ':8080/v1/event/list/all';
                     var response = await http.get(url, headers: {
                       'Content-Type': 'application/json; charset=utf-8',
                       'Accept': 'application/json; charset=utf-8'
@@ -213,7 +213,7 @@ class EventTableState extends State<EventTable> {
                 child: OutlineButton(
                   child: Text('Будущие'),
                   onPressed: () async {
-                    var url = 'http://84.201.185.226:8080/v1/event/list/future';
+                    var url = 'http://' + Globals.host + ':8080/v1/event/list/future';
                     var response = await http.get(url, headers: {
                       'Content-Type': 'application/json; charset=utf-8',
                       'Accept': 'application/json; charset=utf-8'
@@ -239,7 +239,7 @@ class EventTableState extends State<EventTable> {
                 child: OutlineButton(
                   child: Text('Прошедшие'),
                   onPressed: () async {
-                    var url = 'http://84.201.185.226:8080/v1/event/list/past';
+                    var url = 'http://' + Globals.host + ':8080/v1/event/list/past';
                     var response = await http.get(url, headers: {
                       'Content-Type': 'application/json; charset=utf-8',
                       'Accept': 'application/json; charset=utf-8'

@@ -29,9 +29,9 @@ class UserTableState extends State<UserTable> {
   onSort(int columnIndex, bool ascending) {
     if (columnIndex == 0) {
       if (ascending) {
-        users.sort((a, b) => a.name.compareTo(b.name));
+        users.sort((a, b) => a.lastName.compareTo(b.lastName));
       } else {
-        users.sort((a, b) => b.name.compareTo(a.name));
+        users.sort((a, b) => b.lastName.compareTo(a.lastName));
       }
     }
   }
@@ -51,7 +51,7 @@ class UserTableState extends State<UserTable> {
       List<User> temp = [];
       temp.addAll(selectedUsers);
       for (User user in temp) {
-        var url = 'http://84.201.185.226:8080/v1/user/remove';
+        var url = 'http://' + Globals.host + ':8080/v1/user/remove';
         var response = await http.post(url,
             headers: {
               'Content-Type': 'application/json; charset=utf-8',
@@ -62,7 +62,7 @@ class UserTableState extends State<UserTable> {
             }));
       }
     }
-    var url = 'http://84.201.185.226:8080/v1/user/list';
+    var url = 'http://' + Globals.host + ':8080/v1/user/list';
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Accept': 'application/json; charset=utf-8'
@@ -86,7 +86,7 @@ class UserTableState extends State<UserTable> {
       List<User> temp = [];
       temp.addAll(selectedUsers);
       for (User user in temp) {
-        var url = 'http://84.201.185.226:8080/v1/user/verify';
+        var url = 'http://' + Globals.host + ':8080/v1/user/verify';
         var response = await http.post(url,
             headers: {
               'Content-Type': 'application/json; charset=utf-8',
@@ -97,7 +97,7 @@ class UserTableState extends State<UserTable> {
             }));
       }
     }
-    var url = 'http://84.201.185.226:8080/v1/user/list';
+    var url = 'http://' + Globals.host + ':8080/v1/user/list';
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Accept': 'application/json; charset=utf-8'
@@ -122,7 +122,7 @@ class UserTableState extends State<UserTable> {
       List<User> temp = [];
       temp.addAll(selectedUsers);
       for (User user in temp) {
-        var url = 'http://84.201.185.226:8080/v1/user/block';
+        var url = 'http://' + Globals.host + ':8080/v1/user/block';
         var response = await http.post(url,
             headers: {
               'Content-Type': 'application/json; charset=utf-8',
@@ -133,7 +133,7 @@ class UserTableState extends State<UserTable> {
             }));
       }
     }
-    var url = 'http://84.201.185.226:8080/v1/user/list';
+    var url = 'http://' + Globals.host + ':8080/v1/user/list';
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Accept': 'application/json; charset=utf-8'
@@ -158,7 +158,7 @@ class UserTableState extends State<UserTable> {
       List<User> temp = [];
       temp.addAll(selectedUsers);
       for (User user in temp) {
-        var url = 'http://84.201.185.226:8080/v1/user/unblock';
+        var url = 'http://' + Globals.host + ':8080/v1/user/unblock';
         var response = await http.post(url,
             headers: {
               'Content-Type': 'application/json; charset=utf-8',
@@ -169,7 +169,7 @@ class UserTableState extends State<UserTable> {
             }));
       }
     }
-    var url = 'http://84.201.185.226:8080/v1/user/list';
+    var url = 'http://' + Globals.host + ':8080/v1/user/list';
     var response = await http.get(url, headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Accept': 'application/json; charset=utf-8'
@@ -197,15 +197,20 @@ class UserTableState extends State<UserTable> {
         sortColumnIndex: 0,
         columns: [
           DataColumn(
-              label: Text("Имя и фамилия"),
+              label: Text("Фамилия"),
               numeric: false,
-              tooltip: "Имя и фамилия",
+              tooltip: "Фамилия",
               onSort: (columnIndex, ascending) {
                 setState(() {
                   sort = !sort;
                 });
                 onSort(columnIndex, ascending);
               }),
+          DataColumn(
+            label: Text("Имя"),
+            numeric: false,
+            tooltip: "Имя",
+          ),
           DataColumn(
             label: Text("id"),
             numeric: true,
@@ -251,10 +256,10 @@ class UserTableState extends State<UserTable> {
                     },
                     cells: [
                       DataCell(
-                        Text(user.name),
-                        onTap: () {
-                          print('Selected ${user.name}');
-                        },
+                        Text(user.lastName),
+                      ),
+                      DataCell(
+                        Text(user.firstName),
                       ),
                       DataCell(
                         Text(user.userId.toString()),
@@ -283,7 +288,6 @@ class UserTableState extends State<UserTable> {
     );
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -304,8 +308,9 @@ class UserTableState extends State<UserTable> {
                 child: OutlineButton(
                   child: Text('Подтвержденные'),
                   onPressed: () async {
-                    var url =
-                        'http://84.201.185.226:8080/v1/user/list/verified';
+                    var url = 'http://' +
+                        Globals.host +
+                        ':8080/v1/user/list/verified';
                     var response = await http.get(url, headers: {
                       'Content-Type': 'application/json; charset=utf-8',
                       'Accept': 'application/json; charset=utf-8'
@@ -331,8 +336,9 @@ class UserTableState extends State<UserTable> {
                 child: OutlineButton(
                   child: Text('Неподтвержденные'),
                   onPressed: () async {
-                    var url =
-                        'http://84.201.185.226:8080/v1/user/list/unverified';
+                    var url = 'http://' +
+                        Globals.host +
+                        ':8080/v1/user/list/unverified';
                     var response = await http.get(url, headers: {
                       'Content-Type': 'application/json; charset=utf-8',
                       'Accept': 'application/json; charset=utf-8'
@@ -358,7 +364,8 @@ class UserTableState extends State<UserTable> {
                 child: OutlineButton(
                   child: Text('Черный список'),
                   onPressed: () async {
-                    var url = 'http://84.201.185.226:8080/v1/user/list/blocked';
+                    var url =
+                        'http://' + Globals.host + ':8080/v1/user/list/blocked';
                     var response = await http.get(url, headers: {
                       'Content-Type': 'application/json; charset=utf-8',
                       'Accept': 'application/json; charset=utf-8'
@@ -444,21 +451,3 @@ class UserTableState extends State<UserTable> {
     );
   }
 }
-
-//class User {
-//  String firstName;
-//  String lastName;
-//
-//  User({this.firstName, this.lastName});
-//
-//  static List<User> getUsers() {
-//    return <User>[
-//      User(firstName: "Java", lastName: "James Gosling"),
-//      User(firstName: "Android", lastName: "-"),
-//      User(firstName: "Flutter", lastName: "-"),
-//      User(firstName: "PHP", lastName: "Rasmus Lerdorf"),
-//      User(firstName: "C", lastName: "Dennis Ritchie"),
-//      User(firstName: "C++", lastName: "Bjarne Stroustrup")
-//    ];
-//  }
-//}

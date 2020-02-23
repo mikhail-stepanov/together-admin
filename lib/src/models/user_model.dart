@@ -11,7 +11,8 @@
 class User {
   int _id;
   int _userId;
-  String _name;
+  String _firstName;
+  String _lastName;
   String _email;
   String _phone;
   String _facebook;
@@ -20,21 +21,42 @@ class User {
   bool _verified;
 
   int get id => _id;
+
   int get userId => _userId;
-  String get name => _name;
+
+  String get firstName => _firstName;
+
+  String get lastName => _lastName;
+
   String get email => _email;
+
   String get phone => _phone;
+
   String get facebook => _facebook;
+
   String get instagram => _instagram;
+
   int get picId => _picId;
+
   bool get verified => _verified;
 
-  User(this._id, this._userId, this._name, this._email, this._phone, this._facebook, this._instagram, this._picId, this._verified);
+  User(
+      this._id,
+      this._userId,
+      this._firstName,
+      this._lastName,
+      this._email,
+      this._phone,
+      this._facebook,
+      this._instagram,
+      this._picId,
+      this._verified);
 
   User.map(dynamic obj) {
     this._id = obj["id"];
     this._userId = obj["userId"];
-    this._name = obj["name"];
+    this._firstName = obj["firstName"];
+    this._lastName = obj["lastName"];
     this._email = obj["email"];
     this._phone = obj["phone"];
     this._facebook = obj["facebook"];
@@ -47,7 +69,8 @@ class User {
     var map = new Map<String, dynamic>();
     map["id"] = _id;
     map["userId"] = _userId;
-    map["name"] = _name;
+    map["firstName"] = _firstName;
+    map["lastName"] = _lastName;
     map["email"] = _email;
     map["phone"] = _phone;
     map["facebook"] = _facebook;
@@ -56,5 +79,4 @@ class User {
     map["verified"] = _verified;
     return map;
   }
-
 }
