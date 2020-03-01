@@ -15,7 +15,7 @@ class UpdateUser extends StatelessWidget {
   Widget build(BuildContext context) {
     final color_text = Color(0xFF707070);
     final TextEditingController _lastNameController =
-    TextEditingController(text: user.lastName);
+        TextEditingController(text: user.lastName);
     final TextEditingController _firstNameController =
         TextEditingController(text: user.firstName);
     final TextEditingController _phoneController =
@@ -79,12 +79,12 @@ class UpdateUser extends StatelessWidget {
                         decoration: InputDecoration(
                             focusedBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: color_text,
-                                )),
+                              color: color_text,
+                            )),
                             enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
-                                  color: color_text,
-                                ))),
+                              color: color_text,
+                            ))),
                         cursorColor: color_text,
                         style: TextStyle(fontSize: 20, color: color_text),
                       )),
@@ -205,13 +205,15 @@ class UpdateUser extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   SizedBox(height: 45),
+                  Image.memory(Globals.userImage, width: 100, height: 200),
+                  SizedBox(height: 30),
                   Container(
                       width: 320,
                       child: Text(
                         'БИЛЕТЫ:',
                         style: TextStyle(fontSize: 20, color: Colors.white),
                       )),
-                  SizedBox(height: 530),
+                  SizedBox(height: 300),
                   ButtonTheme(
                     minWidth: 60,
                     height: 30,
@@ -232,7 +234,7 @@ class UpdateUser extends StatelessWidget {
                             },
                             body: jsonEncode({
                               'userId': user.userId,
-                              'firstName' : firstName,
+                              'firstName': firstName,
                               'lastName': lastName,
                               'email': email,
                               'phone': phone,

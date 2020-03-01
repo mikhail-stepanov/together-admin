@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:typed_data';
 
 import 'package:flutter_web/material.dart';
 import 'package:http/http.dart' as http;
@@ -423,7 +424,22 @@ class UserTableState extends State<UserTable> {
                 padding: EdgeInsets.all(15.0),
                 child: OutlineButton(
                   child: Text('Полная информация'),
-                  onPressed: () {
+                  onPressed: () async {
+                    var responseImage = await http.post(
+                        'http://' + Globals.host + ':8080/v1/image/get',
+                        headers: {
+                          'Accept': 'application/json; charset=utf-8',
+                          'Content-Type': 'application/json; charset=utf-8'
+                        },
+                        body: jsonEncode({
+                          'id': selectedUsers[0].picId,
+                        }));
+                    Map<String, dynamic> responseImageJson =
+                        json.decode(responseImage.body);
+                    String encodedStr = responseImageJson['content'];
+                    Uint8List bytes = base64Decode(encodedStr);
+                    Globals.userImage = bytes;
+
                     Navigator.push(
                         context,
                         PageRouteBuilder(

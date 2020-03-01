@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:together_admin/src/models/event_model.dart';
 import 'package:together_admin/src/models/user_model.dart';
 
@@ -8,4 +10,5 @@ class Globals {
 
   static List<Event> events;
   static Event selectedEvent;
+  static Uint8List userImage;
 }
